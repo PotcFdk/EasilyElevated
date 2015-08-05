@@ -5,7 +5,7 @@
 // @description Adds an elevator to the bottom of all websites.
 // @include     http://*
 // @include     https://*
-// @version     0.0.1
+// @version     0.0.2
 // @grant       none
 // @resource    ding resources/ding.mp3
 // @resource    elevator resources/elevator.mp3
