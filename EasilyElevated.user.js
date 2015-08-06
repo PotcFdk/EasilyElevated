@@ -5,10 +5,10 @@
 // @description Adds an elevator to the bottom of all websites.
 // @include     http://*
 // @include     https://*
-// @version     0.0.2
-// @grant       GM_getResourceURL
-// @resource    ding resources/ding.mp3
-// @resource    elevator resources/elevator.mp3
+// @version     0.0.3
+// @grant       GM_getResourceText
+// @resource    ding_b64 resources/ding.mp3.b64
+// @resource    elevator_b64 resources/elevator.mp3.b64
 // @downloadURL https://raw.githubusercontent.com/PotcFdk/EasilyElevated/master/EasilyElevated.user.js
 // @updateURL   https://raw.githubusercontent.com/PotcFdk/EasilyElevated/master/EasilyElevated.meta.js
 // ==/UserScript==
@@ -47,16 +47,10 @@ footer.id = 'easily_elevated_footer';
 footer.innerHTML = '^ Take the elevator ^';
 document.body.appendChild (footer);
 
-var elevator = GM_getResourceURL ('elevator');
-var ding = GM_getResourceURL ('ding');
-
-if (ding.length > 1e4 && ding.substr (0, 4) != 'data:')
-    ding = 'data:audio/mp3;base64,' + ding;
-if (elevator.length > 1e4 && elevator.substr (0, 4) != 'data:')
-    elevator = 'data:audio/mp3;base64,' + elevator;
+var dataURL = 'data:audio/mp3;base64,';
 
 var elevator = new Elevator ({
 	element: document.getElementById ('easily_elevated_footer'),
-	mainAudio: elevator,
-	endAudio: ding
+	mainAudio: dataURL + GM_getResourceText ('elevator_b64'),
+	endAudio: dataURL + GM_getResourceText ('ding_b64')
 });
